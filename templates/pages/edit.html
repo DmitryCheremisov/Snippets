@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load pygmentify %}
+
+<form method="POST" action=/edit/{{snippet.id}}>
+    {% csrf_token %}
+<fieldset>
+    <div class="row disabled">
+        <input type="hidden" name="id" value={{snippet.id}}>
+        <div class="col col-8">
+            Название:<input type="text" name="sn_name" value="{{snippet.name}}" class="form-control">
+        </div>
+        <div class="col col-4">
+            Дата создания:<input type="text" value="{{snippet.creation_date|date:"M d, Y" }}" class="form-control">
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <div class="p-2 h-100" style="border:1px solid #ced4da; border-radius:5px;">
+                
+                <textarea name="sn_code" class="p-2 h-100" rows=10 cols=90>{% pygment %}{{snippet.code|safe}}{% endpygment %}</textarea> 
+ 
+            </div>
+ 
+        </div>
+    </div>
+    <br><input type="submit" value="Изменить">
+
+</fieldset>
+</form>
+
+
+{% endblock %}
