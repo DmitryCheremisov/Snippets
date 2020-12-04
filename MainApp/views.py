@@ -59,6 +59,13 @@ def snippets_page(request):
     print("context = ", context)
     return render(request, 'pages/view_snippets.html', context)
 
+def snippets_filter(request):
+    #print("filter = ", request.GET)
+    context = get_base_context(request, 'Просмотр сниппетов')
+    snippets = Snippet.objects.filter(lang=request.GET['lang'])
+    context["snippets"] = snippets
+    return render(request, 'pages/view_snippets.html', context)
+
 
 def snippet(request, snippet_id):
     context = get_base_context(request, 'Страница снипета')

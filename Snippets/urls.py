@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('snippet/add', views.add_snippet_page, name="snippet_add"),
     path('snippets/list', views.snippets_page, name="snippet_view"),
+    path('snippets/filter', views.snippets_filter),
     path('snippet/<int:snippet_id>', views.snippet, name="snippet"),
     path('edit/<int:snippet_id>', views.edit, name="sn_edit"),
     path('snippet/delete/<int:sn_id>', views.sn_delete, name="sn_delete"),
